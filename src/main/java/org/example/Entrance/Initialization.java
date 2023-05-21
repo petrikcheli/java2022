@@ -1,7 +1,7 @@
 package org.example.Entrance;
 
 import org.example.Model.*;
-
+import org.example.klient.Parents;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,7 +53,7 @@ public class Initialization {
             centr.setUserName(user.getUserName());
             centr.setPassword(user.getPassword());
 
-            centr.CCenterMain(centr);
+            centr.CCenterMain(centr, connection);
         } else if (user.getDepartamentId() == 5) {
             Parents parents = new Parents();
 
@@ -64,7 +64,18 @@ public class Initialization {
             parents.setUserName(user.getUserName());
             parents.setPassword(user.getPassword());
 
-            parents.ParentsMain(parents);
+            parents.ParentsMain(parents, connection);
+        } else if (user.getDepartamentId() == 6) {
+            Bookkeeper bookkeeper = new Bookkeeper();
+
+            bookkeeper.setId(user.getId());
+            bookkeeper.setFirstName(user.getFirstName());
+            bookkeeper.setLastName(user.getLastName());
+            bookkeeper.setEmail(user.getEmail());
+            bookkeeper.setUserName(user.getUserName());
+            bookkeeper.setPassword(user.getPassword());
+
+            bookkeeper.bookkeeperMain(bookkeeper);
         } else {
             System.out.println("Если вы это читаете, значит в приложении есть ошибка с тем, что указали неправильный департамент");
         }

@@ -63,7 +63,7 @@ public class Admin extends User{
                     }
                 }
                 case 2 -> OpenExel();
-                case 3 -> System.out.println("Досвидание!!");
+                case 3 -> System.out.println("Досвидания!!");
                 default -> System.out.println("Такого действия нет ");
             }
         }

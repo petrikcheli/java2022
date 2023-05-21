@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.JDBC.*;
-import org.example.Model.Parents;
 
 import java.io.IOException;
 import java.sql.*;
@@ -26,16 +25,11 @@ public class Main {
         while (action != 3){
             action = 0;
             logger.info("1 - войти");
-            logger.info("2 - зарегистрироваться");
             logger.info("3 - exit");
             action = readLine.nextInt();
             switch(action) {
                 case 1:
                     AuthenticationUser(connection);
-                    break;
-                case 2:
-                    Parents parents = new Parents();
-                    parents.Registration(connection);
                     break;
                 case 3:
                     break;
