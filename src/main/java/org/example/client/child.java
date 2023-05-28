@@ -1,13 +1,11 @@
-package org.example.klient;
+package org.example.client;
 
-import org.example.Model.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -25,7 +23,7 @@ public class child {
     protected Integer ActiveMode;
     protected Integer departamentId;
     public child(){this.departamentId = 6;}
-    public void Registration(Connection connection, int idparents) throws SQLException {
+    public void registration(Connection connection, int idparents) throws SQLException {
         logger.info("Введите имя: ");
         this.firstName = readLine.next();
 

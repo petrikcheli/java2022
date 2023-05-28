@@ -1,15 +1,16 @@
 package org.example.Entrance;
 
 import org.example.Model.*;
-import org.example.klient.Parents;
+import org.example.client.Parents;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class Initialization {
 
-    private static void MadeModelAndEntranceInMenu(User user, Connection connection) throws SQLException {
+    private static void madeModelAndEntranceInMenu(User user, Connection connection) throws SQLException, ParseException {
         if(user.getDepartamentId() == 1){
             Admin admin = new Admin();
 
@@ -75,15 +76,16 @@ public class Initialization {
             bookkeeper.setUserName(user.getUserName());
             bookkeeper.setPassword(user.getPassword());
 
-            bookkeeper.bookkeeperMain(bookkeeper);
-        } else {
+            bookkeeper.bookkeeperMain(bookkeeper, connection);
+        }
+        else {
             System.out.println("Если вы это читаете, значит в приложении есть ошибка с тем, что указали неправильный департамент");
         }
     }
 
-    public static void InitializationUser(int idUser, Connection connection) throws SQLException {
+    public static void initializationUser(int idUser, Connection connection) throws SQLException, ParseException {
         PreparedStatement preparedStatement = null;
-        String USER_NEW = "SELECT * FROM users WHERE idUsers = "+idUser+"";
+        String USER_NEW = "SELECT * FROM users WHERE idUsers = '" +idUser+ "' ";
         preparedStatement = connection.prepareStatement(USER_NEW);
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -99,7 +101,7 @@ public class Initialization {
             user.setDepartamentId(resultSet.getInt(7));
         }
 
-        MadeModelAndEntranceInMenu(user, connection);
+        madeModelAndEntranceInMenu(user, connection);
     }
 
 }

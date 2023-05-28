@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Scanner;
 
-import static org.example.Entrance.Initialization.InitializationUser;
+import static org.example.Entrance.Initialization.initializationUser;
 
 public class Authentication {
 
-    public static void AuthenticationUser(Connection connection) throws SQLException {
+    public static void authenticationUser(Connection connection) throws SQLException, ParseException {
         Scanner readLine = new Scanner(System.in);
         PreparedStatement preparedStatement;
         Boolean SuccessfulLogin = false;
@@ -39,7 +40,7 @@ public class Authentication {
             if(PasswordResualSet.equals(PasswordRead)){
                 System.out.println("Удачный вход!");
                 SuccessfulLogin = true;
-                InitializationUser(IdUserResualSet, connection);
+                initializationUser(IdUserResualSet, connection);
             } else{
                 System.out.println("Вы ввели неправильный пароль");
                 SuccessfulLogin = false;

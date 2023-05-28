@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 @Getter
@@ -20,6 +21,18 @@ public class User {
     protected String email;
     protected String userName;
     protected String password;
+
+    public int getId(Connection connection) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String USER_NEW = "SELECT idUsers FROM users WHERE UserName = userName ";
+        preparedStatement = connection.prepareStatement(USER_NEW);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int id = 0;
+        while(resultSet.next()){
+            id = resultSet.getInt(1);
+        }
+        return id;
+    }
 
     protected Integer departamentId;
 

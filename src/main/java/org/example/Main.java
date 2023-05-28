@@ -4,14 +4,15 @@ import org.example.JDBC.*;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static org.example.Entrance.Authentication.AuthenticationUser;
+import static org.example.Entrance.Authentication.authenticationUser;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws SQLException, IOException, ParseException {
         Logger logger = Logger.getLogger(Main.class.getName());
         Scanner readLine = new Scanner(System.in);
 
@@ -24,12 +25,12 @@ public class Main {
         int action = 0;
         while (action != 3){
             action = 0;
-            logger.info("1 - войти");
-            logger.info("3 - exit");
+            System.out.println("1 - войти");
+            System.out.println("3 - exit");
             action = readLine.nextInt();
             switch(action) {
                 case 1:
-                    AuthenticationUser(connection);
+                    authenticationUser(connection);
                     break;
                 case 3:
                     break;
